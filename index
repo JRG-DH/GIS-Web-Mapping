@@ -1,1 +1,1197 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="css/leaflet-search.css" />
+        <link rel="stylesheet" href="css/Control.OSMGeocoder.css" />
+        <link rel="stylesheet" href="css/leaflet-measure.css" />
+        <style>
+        #map {
+            width: 1277px;
+            height: 696px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-heat.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/leaflet-tilelayer-wmts.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/Control.OSMGeocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/RomanNeckar0.js"></script>
+        <script src="data/RomanVicus1.js"></script>
+        <script src="data/RomanEastCastell2.js"></script>
+        <script src="data/RomanWestCastellII3.js"></script>
+        <script src="data/RomanWestCastellI4.js"></script>
+        <script src="data/ExcavatedAreaWestCastell5.js"></script>
+        <script src="data/FindingsWestCastell6.js"></script>
+        <script src="data/FindingSitesWestCastell7.js"></script>
+        <script src="data/RomanRoadsevidence8.js"></script>
+        <script src="data/RomanRoadsplausible9.js"></script>
+        <script src="data/WaterSupply10.js"></script>
+        <script src="data/WaterSupplySpring11.js"></script>
+        <script src="data/RomanBurial12.js"></script>
+        <script src="data/RomanPotteryKiln13.js"></script>
+        <script src="data/RomanBrickKiln14.js"></script>
+        <script src="data/RomanSite15.js"></script>
+        <script src="data/MithraeaTemple16.js"></script>
+        <script src="data/LateAntiquity17.js"></script>
+        <script src="data/MigrationPeriod18.js"></script>
+        <script src="data/MerovingianPeriod19.js"></script>
+        <script src="data/PlaceNameLorscherCodex20.js"></script>
+        <script>
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[49.3969982326,8.65773916165],[49.4262012231,8.71146084794]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var measureControl = new L.Control.Measure({
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>,<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash;Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function geoJson2heat(geojson, weight) {
+          return geojson.features.map(function(feature) {
+            return [
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0],
+              feature.properties[weight]
+            ];
+          });
+        }
+        function pop_RomanNeckar0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanNeckar0() {
+            return {
+                pane: 'pane_RomanNeckar0',
+                opacity: 1,
+                color: 'rgba(29,230,217,0.650980392157)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(29,230,217,0.650980392157)',
+            }
+        }
+        map.createPane('pane_RomanNeckar0');
+        map.getPane('pane_RomanNeckar0').style.zIndex = 400;
+        map.getPane('pane_RomanNeckar0').style['mix-blend-mode'] = 'normal';
+    var layer_RomanNeckar0 = new L.geoJson(json_RomanNeckar0, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanNeckar0',
+        onEachFeature: pop_RomanNeckar0,
+        style: style_RomanNeckar0
+    });
+        bounds_group.addLayer(layer_RomanNeckar0);
+        map.addLayer(layer_RomanNeckar0);
+        function pop_RomanVicus1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanVicus1() {
+            return {
+                pane: 'pane_RomanVicus1',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.494117647059)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(249,28,32,0.494117647059)',
+            }
+        }
+        map.createPane('pane_RomanVicus1');
+        map.getPane('pane_RomanVicus1').style.zIndex = 401;
+        map.getPane('pane_RomanVicus1').style['mix-blend-mode'] = 'normal';
+    var layer_RomanVicus1 = new L.geoJson(json_RomanVicus1, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanVicus1',
+        onEachFeature: pop_RomanVicus1,
+        style: style_RomanVicus1
+    });
+        bounds_group.addLayer(layer_RomanVicus1);
+        map.addLayer(layer_RomanVicus1);
+        function pop_RomanEastCastell2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanEastCastell2() {
+            return {
+                pane: 'pane_RomanEastCastell2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(186,64,5,1.0)',
+            }
+        }
+        map.createPane('pane_RomanEastCastell2');
+        map.getPane('pane_RomanEastCastell2').style.zIndex = 402;
+        map.getPane('pane_RomanEastCastell2').style['mix-blend-mode'] = 'normal';
+    var layer_RomanEastCastell2 = new L.geoJson(json_RomanEastCastell2, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanEastCastell2',
+        onEachFeature: pop_RomanEastCastell2,
+        style: style_RomanEastCastell2
+    });
+        bounds_group.addLayer(layer_RomanEastCastell2);
+        map.addLayer(layer_RomanEastCastell2);
+        function pop_RomanWestCastellII3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanWestCastellII3() {
+            return {
+                pane: 'pane_RomanWestCastellII3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(1,26,244,1.0)',
+            }
+        }
+        map.createPane('pane_RomanWestCastellII3');
+        map.getPane('pane_RomanWestCastellII3').style.zIndex = 403;
+        map.getPane('pane_RomanWestCastellII3').style['mix-blend-mode'] = 'normal';
+    var layer_RomanWestCastellII3 = new L.geoJson(json_RomanWestCastellII3, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanWestCastellII3',
+        onEachFeature: pop_RomanWestCastellII3,
+        style: style_RomanWestCastellII3
+    });
+        bounds_group.addLayer(layer_RomanWestCastellII3);
+        map.addLayer(layer_RomanWestCastellII3);
+        function pop_RomanWestCastellI4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanWestCastellI4() {
+            return {
+                pane: 'pane_RomanWestCastellI4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.450980392157)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,0.450980392157)',
+            }
+        }
+        map.createPane('pane_RomanWestCastellI4');
+        map.getPane('pane_RomanWestCastellI4').style.zIndex = 404;
+        map.getPane('pane_RomanWestCastellI4').style['mix-blend-mode'] = 'normal';
+    var layer_RomanWestCastellI4 = new L.geoJson(json_RomanWestCastellI4, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanWestCastellI4',
+        onEachFeature: pop_RomanWestCastellI4,
+        style: style_RomanWestCastellI4
+    });
+        bounds_group.addLayer(layer_RomanWestCastellI4);
+        map.addLayer(layer_RomanWestCastellI4);
+        function pop_ExcavatedAreaWestCastell5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_ExcavatedAreaWestCastell5() {
+            return {
+                pane: 'pane_ExcavatedAreaWestCastell5',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(106,99,148,1.0)',
+            }
+        }
+        map.createPane('pane_ExcavatedAreaWestCastell5');
+        map.getPane('pane_ExcavatedAreaWestCastell5').style.zIndex = 405;
+        map.getPane('pane_ExcavatedAreaWestCastell5').style['mix-blend-mode'] = 'normal';
+    var layer_ExcavatedAreaWestCastell5 = new L.geoJson(json_ExcavatedAreaWestCastell5, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_ExcavatedAreaWestCastell5',
+        onEachFeature: pop_ExcavatedAreaWestCastell5,
+        style: style_ExcavatedAreaWestCastell5
+    });
+        bounds_group.addLayer(layer_ExcavatedAreaWestCastell5);
+        map.addLayer(layer_ExcavatedAreaWestCastell5);
+        function pop_FindingsWestCastell6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cron'] !== null ? Autolinker.link(String(feature.properties['Cron'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_FindingsWestCastell6() {
+            return {
+                pane: 'pane_FindingsWestCastell6',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(190,150,121,1.0)',
+            }
+        }
+        map.createPane('pane_FindingsWestCastell6');
+        map.getPane('pane_FindingsWestCastell6').style.zIndex = 406;
+        map.getPane('pane_FindingsWestCastell6').style['mix-blend-mode'] = 'normal';
+    var layer_FindingsWestCastell6 = new L.geoJson(json_FindingsWestCastell6, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_FindingsWestCastell6',
+        onEachFeature: pop_FindingsWestCastell6,
+        style: style_FindingsWestCastell6
+    });
+        bounds_group.addLayer(layer_FindingsWestCastell6);
+        map.addLayer(layer_FindingsWestCastell6);
+        function pop_FindingSitesWestCastell7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_FindingSitesWestCastell7() {
+            return {
+                pane: 'pane_FindingSitesWestCastell7',
+                radius: 1.5,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,171,204,1.0)',
+            }
+        }
+        map.createPane('pane_FindingSitesWestCastell7');
+        map.getPane('pane_FindingSitesWestCastell7').style.zIndex = 407;
+        map.getPane('pane_FindingSitesWestCastell7').style['mix-blend-mode'] = 'normal';
+        var layer_FindingSitesWestCastell7 = new L.geoJson(json_FindingSitesWestCastell7, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_FindingSitesWestCastell7',
+            onEachFeature: pop_FindingSitesWestCastell7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FindingSitesWestCastell7(feature)).bindTooltip((feature.properties['id'] !== null?String('<div style="color: #000000; font-size: 5pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + feature.properties['id']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FindingSitesWestCastell7'}).openTooltip();
+            }
+        });
+        bounds_group.addLayer(layer_FindingSitesWestCastell7);
+        map.addLayer(layer_FindingSitesWestCastell7);
+        function pop_RomanRoadsevidence8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanRoadsevidence8() {
+            return {
+                pane: 'pane_RomanRoadsevidence8',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_RomanRoadsevidence8');
+        map.getPane('pane_RomanRoadsevidence8').style.zIndex = 408;
+        map.getPane('pane_RomanRoadsevidence8').style['mix-blend-mode'] = 'normal';
+    var layer_RomanRoadsevidence8 = new L.geoJson(json_RomanRoadsevidence8, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanRoadsevidence8',
+        onEachFeature: pop_RomanRoadsevidence8,
+        style: style_RomanRoadsevidence8
+    });
+        bounds_group.addLayer(layer_RomanRoadsevidence8);
+        map.addLayer(layer_RomanRoadsevidence8);
+        function pop_RomanRoadsplausible9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanRoadsplausible9() {
+            return {
+                pane: 'pane_RomanRoadsplausible9',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '1,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_RomanRoadsplausible9');
+        map.getPane('pane_RomanRoadsplausible9').style.zIndex = 409;
+        map.getPane('pane_RomanRoadsplausible9').style['mix-blend-mode'] = 'normal';
+    var layer_RomanRoadsplausible9 = new L.geoJson(json_RomanRoadsplausible9, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_RomanRoadsplausible9',
+        onEachFeature: pop_RomanRoadsplausible9,
+        style: style_RomanRoadsplausible9
+    });
+        bounds_group.addLayer(layer_RomanRoadsplausible9);
+        map.addLayer(layer_RomanRoadsplausible9);
+        function pop_WaterSupply10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_WaterSupply10() {
+            return {
+                pane: 'pane_WaterSupply10',
+                opacity: 1,
+                color: 'rgba(113,223,227,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_WaterSupply10');
+        map.getPane('pane_WaterSupply10').style.zIndex = 410;
+        map.getPane('pane_WaterSupply10').style['mix-blend-mode'] = 'normal';
+    var layer_WaterSupply10 = new L.geoJson(json_WaterSupply10, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_WaterSupply10',
+        onEachFeature: pop_WaterSupply10,
+        style: style_WaterSupply10
+    });
+        bounds_group.addLayer(layer_WaterSupply10);
+        map.addLayer(layer_WaterSupply10);
+        function pop_WaterSupplySpring11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_WaterSupplySpring11() {
+            return {
+                pane: 'pane_WaterSupplySpring11',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(113,223,227,1.0)',
+            }
+        }
+        map.createPane('pane_WaterSupplySpring11');
+        map.getPane('pane_WaterSupplySpring11').style.zIndex = 411;
+        map.getPane('pane_WaterSupplySpring11').style['mix-blend-mode'] = 'normal';
+        var layer_WaterSupplySpring11 = new L.geoJson(json_WaterSupplySpring11, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_WaterSupplySpring11',
+            onEachFeature: pop_WaterSupplySpring11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_WaterSupplySpring11(feature))
+            }
+        });
+        bounds_group.addLayer(layer_WaterSupplySpring11);
+        map.addLayer(layer_WaterSupplySpring11);
+        function pop_RomanBurial12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanBurial12() {
+            return {
+                pane: 'pane_RomanBurial12',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,171,171,1.0)',
+            }
+        }
+        map.createPane('pane_RomanBurial12');
+        map.getPane('pane_RomanBurial12').style.zIndex = 412;
+        map.getPane('pane_RomanBurial12').style['mix-blend-mode'] = 'normal';
+        var layer_RomanBurial12 = new L.geoJson(json_RomanBurial12, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_RomanBurial12',
+            onEachFeature: pop_RomanBurial12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_RomanBurial12(feature))
+            }
+        });
+        bounds_group.addLayer(layer_RomanBurial12);
+        map.addLayer(layer_RomanBurial12);
+        function pop_RomanPotteryKiln13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanPotteryKiln13() {
+            return {
+                pane: 'pane_RomanPotteryKiln13',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,246,8,1.0)',
+            }
+        }
+        map.createPane('pane_RomanPotteryKiln13');
+        map.getPane('pane_RomanPotteryKiln13').style.zIndex = 413;
+        map.getPane('pane_RomanPotteryKiln13').style['mix-blend-mode'] = 'normal';
+        var layer_RomanPotteryKiln13 = new L.geoJson(json_RomanPotteryKiln13, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_RomanPotteryKiln13',
+            onEachFeature: pop_RomanPotteryKiln13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_RomanPotteryKiln13(feature))
+            }
+        });
+        bounds_group.addLayer(layer_RomanPotteryKiln13);
+        map.addLayer(layer_RomanPotteryKiln13);
+        function pop_RomanBrickKiln14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanBrickKiln14() {
+            return {
+                pane: 'pane_RomanBrickKiln14',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+            }
+        }
+        map.createPane('pane_RomanBrickKiln14');
+        map.getPane('pane_RomanBrickKiln14').style.zIndex = 414;
+        map.getPane('pane_RomanBrickKiln14').style['mix-blend-mode'] = 'normal';
+        var layer_RomanBrickKiln14 = new L.geoJson(json_RomanBrickKiln14, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_RomanBrickKiln14',
+            onEachFeature: pop_RomanBrickKiln14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_RomanBrickKiln14(feature))
+            }
+        });
+        bounds_group.addLayer(layer_RomanBrickKiln14);
+        map.addLayer(layer_RomanBrickKiln14);
+        function pop_RomanSite15(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['title'] !== null ? Autolinker.link(String(feature.properties['title'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['kind'] !== null ? Autolinker.link(String(feature.properties['kind'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['summary'] !== null ? Autolinker.link(String(feature.properties['summary'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['picture'] !== null ? '<img src="images/' + String(feature.properties['picture']).replace(/[\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url_wiki'] !== null ? Autolinker.link(String(feature.properties['url_wiki'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url_long'] !== null ? Autolinker.link(String(feature.properties['url_long'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_RomanSite15() {
+            return {
+                pane: 'pane_RomanSite15',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,64,5,1.0)',
+            }
+        }
+        map.createPane('pane_RomanSite15');
+        map.getPane('pane_RomanSite15').style.zIndex = 415;
+        map.getPane('pane_RomanSite15').style['mix-blend-mode'] = 'normal';
+        var layer_RomanSite15 = new L.geoJson(json_RomanSite15, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_RomanSite15',
+            onEachFeature: pop_RomanSite15,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_RomanSite15(feature))
+            }
+        });
+        bounds_group.addLayer(layer_RomanSite15);
+        map.addLayer(layer_RomanSite15);
+        function pop_MithraeaTemple16(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_MithraeaTemple16() {
+            return {
+                pane: 'pane_MithraeaTemple16',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,252,44,1.0)',
+            }
+        }
+        map.createPane('pane_MithraeaTemple16');
+        map.getPane('pane_MithraeaTemple16').style.zIndex = 416;
+        map.getPane('pane_MithraeaTemple16').style['mix-blend-mode'] = 'normal';
+        var layer_MithraeaTemple16 = new L.geoJson(json_MithraeaTemple16, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_MithraeaTemple16',
+            onEachFeature: pop_MithraeaTemple16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_MithraeaTemple16(feature))
+            }
+        });
+        bounds_group.addLayer(layer_MithraeaTemple16);
+        map.addLayer(layer_MithraeaTemple16);
+        function pop_LateAntiquity17(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kat.-nr.-W'] !== null ? Autolinker.link(String(feature.properties['Kat.-nr.-W'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gemarkung'] !== null ? Autolinker.link(String(feature.properties['Gemarkung'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gewann_wei'] !== null ? Autolinker.link(String(feature.properties['Gewann_wei'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kreis'] !== null ? Autolinker.link(String(feature.properties['Kreis'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz'] !== null ? Autolinker.link(String(feature.properties['Fundplatz'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz_'] !== null ? Autolinker.link(String(feature.properties['Fundplatz_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Schmittsch'] !== null ? Autolinker.link(String(feature.properties['Schmittsch'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_WGS'] !== null ? Autolinker.link(String(feature.properties['Rechts_WGS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_WGS84'] !== null ? Autolinker.link(String(feature.properties['Hoch_WGS84'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_GK'] !== null ? Autolinker.link(String(feature.properties['Rechts_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_GK'] !== null ? Autolinker.link(String(feature.properties['Hoch_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatza'] !== null ? Autolinker.link(String(feature.properties['Fundplatza'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Funde'] !== null ? Autolinker.link(String(feature.properties['Funde'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Eindeutigk'] !== null ? Autolinker.link(String(feature.properties['Eindeutigk'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zeitstellu'] !== null ? Autolinker.link(String(feature.properties['Zeitstellu'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindatier'] !== null ? Autolinker.link(String(feature.properties['Feindatier'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindati_1'] !== null ? Autolinker.link(String(feature.properties['Feindati_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-au'] !== null ? Autolinker.link(String(feature.properties['Feindat-au'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-_1'] !== null ? Autolinker.link(String(feature.properties['Feindat-_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundumstä'] !== null ? Autolinker.link(String(feature.properties['Fundumstä'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Endeckungs'] !== null ? Autolinker.link(String(feature.properties['Endeckungs'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['weitere An'] !== null ? Autolinker.link(String(feature.properties['weitere An'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lagegenaui'] !== null ? Autolinker.link(String(feature.properties['Lagegenaui'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Koordinate'] !== null ? Autolinker.link(String(feature.properties['Koordinate'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Landnutzun'] !== null ? Autolinker.link(String(feature.properties['Landnutzun'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Literatur'] !== null ? Autolinker.link(String(feature.properties['Literatur'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Bearbeiter'] !== null ? Autolinker.link(String(feature.properties['Bearbeiter'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_LateAntiquity17() {
+            return {
+                pane: 'pane_LateAntiquity17',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,26,244,1.0)',
+            }
+        }
+        map.createPane('pane_LateAntiquity17');
+        map.getPane('pane_LateAntiquity17').style.zIndex = 417;
+        map.getPane('pane_LateAntiquity17').style['mix-blend-mode'] = 'normal';
+        var layer_LateAntiquity17 = new L.geoJson(json_LateAntiquity17, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_LateAntiquity17',
+            onEachFeature: pop_LateAntiquity17,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LateAntiquity17(feature))
+            }
+        });
+        bounds_group.addLayer(layer_LateAntiquity17);
+        map.addLayer(layer_LateAntiquity17);
+        function pop_MigrationPeriod18(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kat.-nr.-W'] !== null ? Autolinker.link(String(feature.properties['Kat.-nr.-W'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gemarkung'] !== null ? Autolinker.link(String(feature.properties['Gemarkung'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gewann_wei'] !== null ? Autolinker.link(String(feature.properties['Gewann_wei'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kreis'] !== null ? Autolinker.link(String(feature.properties['Kreis'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz'] !== null ? Autolinker.link(String(feature.properties['Fundplatz'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz_'] !== null ? Autolinker.link(String(feature.properties['Fundplatz_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Schmittsch'] !== null ? Autolinker.link(String(feature.properties['Schmittsch'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_WGS'] !== null ? Autolinker.link(String(feature.properties['Rechts_WGS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_WGS84'] !== null ? Autolinker.link(String(feature.properties['Hoch_WGS84'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_GK'] !== null ? Autolinker.link(String(feature.properties['Rechts_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_GK'] !== null ? Autolinker.link(String(feature.properties['Hoch_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatza'] !== null ? Autolinker.link(String(feature.properties['Fundplatza'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Funde'] !== null ? Autolinker.link(String(feature.properties['Funde'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Eindeutigk'] !== null ? Autolinker.link(String(feature.properties['Eindeutigk'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zeitstellu'] !== null ? Autolinker.link(String(feature.properties['Zeitstellu'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindatier'] !== null ? Autolinker.link(String(feature.properties['Feindatier'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindati_1'] !== null ? Autolinker.link(String(feature.properties['Feindati_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-au'] !== null ? Autolinker.link(String(feature.properties['Feindat-au'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-_1'] !== null ? Autolinker.link(String(feature.properties['Feindat-_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundumstä'] !== null ? Autolinker.link(String(feature.properties['Fundumstä'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Endeckungs'] !== null ? Autolinker.link(String(feature.properties['Endeckungs'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['weitere An'] !== null ? Autolinker.link(String(feature.properties['weitere An'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lagegenaui'] !== null ? Autolinker.link(String(feature.properties['Lagegenaui'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Koordinate'] !== null ? Autolinker.link(String(feature.properties['Koordinate'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Landnutzun'] !== null ? Autolinker.link(String(feature.properties['Landnutzun'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Literatur'] !== null ? Autolinker.link(String(feature.properties['Literatur'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Bearbeiter'] !== null ? Autolinker.link(String(feature.properties['Bearbeiter'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_MigrationPeriod18() {
+            return {
+                pane: 'pane_MigrationPeriod18',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+            }
+        }
+        map.createPane('pane_MigrationPeriod18');
+        map.getPane('pane_MigrationPeriod18').style.zIndex = 418;
+        map.getPane('pane_MigrationPeriod18').style['mix-blend-mode'] = 'normal';
+        var layer_MigrationPeriod18 = new L.geoJson(json_MigrationPeriod18, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_MigrationPeriod18',
+            onEachFeature: pop_MigrationPeriod18,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_MigrationPeriod18(feature))
+            }
+        });
+        bounds_group.addLayer(layer_MigrationPeriod18);
+        map.addLayer(layer_MigrationPeriod18);
+        function pop_MerovingianPeriod19(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kat.-nr.-W'] !== null ? Autolinker.link(String(feature.properties['Kat.-nr.-W'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gemarkung'] !== null ? Autolinker.link(String(feature.properties['Gemarkung'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gewann_wei'] !== null ? Autolinker.link(String(feature.properties['Gewann_wei'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kreis'] !== null ? Autolinker.link(String(feature.properties['Kreis'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz'] !== null ? Autolinker.link(String(feature.properties['Fundplatz'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatz_'] !== null ? Autolinker.link(String(feature.properties['Fundplatz_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Schmittsch'] !== null ? Autolinker.link(String(feature.properties['Schmittsch'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_WGS'] !== null ? Autolinker.link(String(feature.properties['Rechts_WGS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_WGS84'] !== null ? Autolinker.link(String(feature.properties['Hoch_WGS84'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Rechts_GK'] !== null ? Autolinker.link(String(feature.properties['Rechts_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hoch_GK'] !== null ? Autolinker.link(String(feature.properties['Hoch_GK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundplatza'] !== null ? Autolinker.link(String(feature.properties['Fundplatza'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Funde'] !== null ? Autolinker.link(String(feature.properties['Funde'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Eindeutigk'] !== null ? Autolinker.link(String(feature.properties['Eindeutigk'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zeitstellu'] !== null ? Autolinker.link(String(feature.properties['Zeitstellu'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindatier'] !== null ? Autolinker.link(String(feature.properties['Feindatier'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindati_1'] !== null ? Autolinker.link(String(feature.properties['Feindati_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-au'] !== null ? Autolinker.link(String(feature.properties['Feindat-au'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Feindat-_1'] !== null ? Autolinker.link(String(feature.properties['Feindat-_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Fundumstä'] !== null ? Autolinker.link(String(feature.properties['Fundumstä'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Endeckungs'] !== null ? Autolinker.link(String(feature.properties['Endeckungs'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['weitere An'] !== null ? Autolinker.link(String(feature.properties['weitere An'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lagegenaui'] !== null ? Autolinker.link(String(feature.properties['Lagegenaui'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Koordinate'] !== null ? Autolinker.link(String(feature.properties['Koordinate'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Landnutzun'] !== null ? Autolinker.link(String(feature.properties['Landnutzun'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Literatur'] !== null ? Autolinker.link(String(feature.properties['Literatur'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Bearbeiter'] !== null ? Autolinker.link(String(feature.properties['Bearbeiter'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_MerovingianPeriod19() {
+            return {
+                pane: 'pane_MerovingianPeriod19',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,39,4,1.0)',
+            }
+        }
+        map.createPane('pane_MerovingianPeriod19');
+        map.getPane('pane_MerovingianPeriod19').style.zIndex = 419;
+        map.getPane('pane_MerovingianPeriod19').style['mix-blend-mode'] = 'normal';
+        var layer_MerovingianPeriod19 = new L.geoJson(json_MerovingianPeriod19, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_MerovingianPeriod19',
+            onEachFeature: pop_MerovingianPeriod19,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_MerovingianPeriod19(feature))
+            }
+        });
+        bounds_group.addLayer(layer_MerovingianPeriod19);
+        map.addLayer(layer_MerovingianPeriod19);
+        function pop_PlaceNameLorscherCodex20(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Laufnr#'] !== null ? Autolinker.link(String(feature.properties['Laufnr#'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Quellennam'] !== null ? Autolinker.link(String(feature.properties['Quellennam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Heutiger O'] !== null ? Autolinker.link(String(feature.properties['Heutiger O'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Mittelalte'] !== null ? Autolinker.link(String(feature.properties['Mittelalte'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zusatzinfo'] !== null ? Autolinker.link(String(feature.properties['Zusatzinfo'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Land (z#B#'] !== null ? Autolinker.link(String(feature.properties['Land (z#B#'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Urkunden-N'] !== null ? Autolinker.link(String(feature.properties['Urkunden-N'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? Autolinker.link(String(feature.properties['Latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? Autolinker.link(String(feature.properties['Longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kommentare'] !== null ? Autolinker.link(String(feature.properties['Kommentare'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kategorie'] !== null ? Autolinker.link(String(feature.properties['Kategorie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Urkunden_1'] !== null ? Autolinker.link(String(feature.properties['Urkunden_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Spalten-an'] !== null ? Autolinker.link(String(feature.properties['Spalten-an'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link CL'] !== null ? Autolinker.link(String(feature.properties['Link CL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Bezeichnun'] !== null ? Autolinker.link(String(feature.properties['Bezeichnun'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Jahreszahl'] !== null ? Autolinker.link(String(feature.properties['Jahreszahl'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gau'] !== null ? Autolinker.link(String(feature.properties['Gau'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link 1 - T'] !== null ? Autolinker.link(String(feature.properties['Link 1 - T'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link 1 - U'] !== null ? Autolinker.link(String(feature.properties['Link 1 - U'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link 2 - T'] !== null ? Autolinker.link(String(feature.properties['Link 2 - T'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link 2 - U'] !== null ? Autolinker.link(String(feature.properties['Link 2 - U'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Anmerkung'] !== null ? Autolinker.link(String(feature.properties['Anmerkung'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function style_PlaceNameLorscherCodex20() {
+            return {
+                pane: 'pane_PlaceNameLorscherCodex20',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,160,44,1.0)',
+            }
+        }
+        map.createPane('pane_PlaceNameLorscherCodex20');
+        map.getPane('pane_PlaceNameLorscherCodex20').style.zIndex = 420;
+        map.getPane('pane_PlaceNameLorscherCodex20').style['mix-blend-mode'] = 'normal';
+        var layer_PlaceNameLorscherCodex20 = new L.geoJson(json_PlaceNameLorscherCodex20, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_PlaceNameLorscherCodex20',
+            onEachFeature: pop_PlaceNameLorscherCodex20,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PlaceNameLorscherCodex20(feature))
+            }
+        });
+        bounds_group.addLayer(layer_PlaceNameLorscherCodex20);
+        map.addLayer(layer_PlaceNameLorscherCodex20);
+        var osmGeocoder = new L.Control.OSMGeocoder({
+            collapsed: false,
+            position: 'topright',
+            text: 'Search',
+        });
+        osmGeocoder.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/PlaceNameLorscherCodex20.png" /> Place Name Lorscher Codex': layer_PlaceNameLorscherCodex20,'<img src="legend/MerovingianPeriod19.png" /> Merovingian Period': layer_MerovingianPeriod19,'<img src="legend/MigrationPeriod18.png" /> Migration Period': layer_MigrationPeriod18,'<img src="legend/LateAntiquity17.png" /> Late Antiquity': layer_LateAntiquity17,'<img src="legend/MithraeaTemple16.png" /> Mithraea Temple': layer_MithraeaTemple16,'<img src="legend/RomanSite15.png" /> Roman Site': layer_RomanSite15,'<img src="legend/RomanBrickKiln14.png" /> Roman Brick Kiln': layer_RomanBrickKiln14,'<img src="legend/RomanPotteryKiln13.png" /> Roman Pottery Kiln': layer_RomanPotteryKiln13,'<img src="legend/RomanBurial12.png" /> Roman Burial': layer_RomanBurial12,'<img src="legend/WaterSupplySpring11.png" /> Water Supply-Spring': layer_WaterSupplySpring11,'<img src="legend/WaterSupply10.png" /> Water Supply': layer_WaterSupply10,'<img src="legend/RomanRoadsplausible9.png" /> Roman Roads plausible': layer_RomanRoadsplausible9,'<img src="legend/RomanRoadsevidence8.png" /> Roman Roads evidence': layer_RomanRoadsevidence8,'<img src="legend/FindingSitesWestCastell7.png" /> Finding Sites West Castell': layer_FindingSitesWestCastell7,'<img src="legend/FindingsWestCastell6.png" /> Findings West Castell': layer_FindingsWestCastell6,'<img src="legend/ExcavatedAreaWestCastell5.png" /> Excavated Area West Castell': layer_ExcavatedAreaWestCastell5,'<img src="legend/RomanWestCastellI4.png" /> Roman West Castell I': layer_RomanWestCastellI4,'<img src="legend/RomanWestCastellII3.png" /> Roman West Castell II': layer_RomanWestCastellII3,'<img src="legend/RomanEastCastell2.png" /> Roman East Castell': layer_RomanEastCastell2,'<img src="legend/RomanVicus1.png" /> Roman Vicus': layer_RomanVicus1,'<img src="legend/RomanNeckar0.png" /> Roman Neckar': layer_RomanNeckar0,},{collapsed:false}).addTo(map);
+        setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_RomanSite15,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'summary'}));
+        </script>
+    </body>
+</html>
 
